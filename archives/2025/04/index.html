@@ -1,439 +1,546 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" class="transition-all" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
-  <meta name="keywords" content="">
-  
-    <meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://example.com/archives/2025/04/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>归档 - Hexo</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"qcr2oiBPIM03IhAgide4f6DN-gzGzoHsz","app_key":"NN8rMLu7AUKhakZJ9cGUCVAL","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.3.0"></head>
-
-
-<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-  
-
-  <!-- 增强的导航栏 -->
-  <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-md" 
-          x-data="{ isOpen: false }"
-          @scroll.window="window.scrollY > 100 ? $el.classList.add('scrolled') : $el.classList.remove('scrolled')">
-    
-
-<div class="header-inner" style="height: 60vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>SilentBouquet</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="归档"></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-    
-    <!-- 暗色模式切换按钮 -->
-    
-    <button class="dark-mode-toggle absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-            @click="document.documentElement.classList.toggle('dark')">
-      <i class="iconfont icon-sun text-xl"></i>
-      <span class="sr-only">Switch to Dark Mode</span>
-    </button>
-    
-  </header>
-
-  <main class="min-h-screen pt-16">
-    
-      <!-- 增强的Banner区域 -->
-      <div class="container nopadding-x-md relative">
-        <div id="board" 
-             class="rounded-xl overflow-hidden "
-             style="min-height: 60vh;">
-          
-          
-            <!-- 通用内容容器 -->
-            <div class="content-container mx-auto px-4">
-              <div class="content-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 transform hover:shadow-xl transition-all duration-300">
-                <div class="prose dark:prose-invert max-w-none">
-                  
-
-<div class="list-group">
-  <p class="h4">共计 2 篇文章</p>
-  <hr>
-  
-  
-    
-      
-      <p class="h5">2025</p>
-    
-    <a href="/2025/04/23/hello-world/" class="list-group-item list-group-item-action">
-      <time>04-23</time>
-      <div class="list-group-item-title">Hello World</div>
-    </a>
-  
-</div>
-
-
-
-
-
-                </div>
-              </div>
-            </div>
-          
-        </div>
-      </div>
-    
-
-    <!-- 增强的返回顶部按钮 -->
-    
-    <a id="scroll-top-button" 
-       class="fixed bottom-8 right-8 w-12 h-12 bg-primary-500 hover:bg-primary-600 dark:bg-primary-600 dark:hover:bg-primary-700 rounded-full shadow-lg flex items-center justify-center opacity-0 transition-all duration-300 transform translate-y-4"
-       aria-label="TOP" 
-       href="#" 
-       role="button"
-       @click.prevent="window.scrollTo({ top: 0, behavior: 'smooth' })">
-      <i class="iconfont icon-arrowup text-white text-xl"></i>
-    </a>
-    
-
-    <!-- 增强的搜索组件 -->
-    
-    <div class="search-wrapper fixed top-24 right-8 z-50">
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    </div>
-    
-
-    <!-- 自定义HTML容器 -->
-    
-  </main>
-
-  <!-- 增强的页脚 -->
-  <footer class="bg-gray-800 text-gray-200 dark:bg-gray-900 dark:text-gray-400 mt-16 py-12">
-    <div class="container mx-auto px-4">
-      <div class="footer-content grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
-
-</div>
-
-  
-  
-</div>
-
-      </div>
-      <div class="copyright mt-8 pt-8 border-t border-gray-700 text-center">
-        &copy; 2025 John Doe
-      </div>
-    </div>
-  </footer>
-
-  <!-- 脚本加载 -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="/js/leancloud.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <!-- 全局过渡效果 -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 页面加载动画
-      document.body.classList.add('loaded');
-      
-      // 返回顶部按钮显示逻辑
-      const scrollButton = document.getElementById('scroll-top-button');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-          scrollButton.classList.remove('opacity-0', 'translate-y-4');
-          scrollButton.classList.add('opacity-100', 'translate-y-0');
-        } else {
-          scrollButton.classList.add('opacity-0', 'translate-y-4');
-          scrollButton.classList.remove('opacity-100', 'translate-y-0');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale==1.0">
+    <title>Hexo</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-      });
-    });
-  </script>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: #5d4037;
+        }
+        a:hover {
+            color: #ff9800;
+        }
+        img {
+            max-width: 100%;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
-  <noscript>
-    <div class="noscript-warning fixed top-0 left-0 right-0 bg-red-500 text-white text-center p-2">
-      博客在允许 JavaScript 运行的环境下浏览效果更佳
+        /* 顶部导航栏样式 */
+        header {
+            background-color: #f5f0e6;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5d4037;
+        }
+        .logo a:hover {
+            color: #ff9800;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255, 152, 0, 0.1);
+        }
+
+        /* 主内容区样式 */
+        .main-content {
+            display: flex;
+            margin: 30px 0;
+        }
+        .content {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .sidebar {
+            width: 300px;
+            margin-left: 30px;
+        }
+
+        /* 小说板块样式 */
+        .novel-section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f5f0e6;
+            position: relative;
+        }
+        .novel-title {
+            color: #1a237e;
+        }
+        .novel-meta {
+            font-size: 14px;
+            color: #757575;
+            margin-bottom: 15px;
+        }
+        .novel-content p {
+            margin-bottom: 15px;
+            text-indent: 2em;
+            line-height: 1.8;
+        }
+        .chapter-separator {
+            height: 1px;
+            background-color: #ff9800;
+            margin: 30px 0;
+        }
+
+        /* 哲学随笔板块样式 */
+        .philosophy-section {
+            margin-bottom: 40px;
+        }
+        .philosophy-title {
+            color: #2e7d32;
+        }
+        .philosophy-summary {
+            font-style: italic;
+            color: #757575;
+            margin-bottom: 15px;
+        }
+        .philosophy-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        .philosophy-highlight {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-left: 3px solid #2e7d32;
+            margin-bottom: 15px;
+        }
+        .philosophy-think-icon {
+            text-align: right;
+            font-style: italic;
+            color: #757575;
+        }
+
+        /* 学习记录板块样式 */
+        .study-section {
+            margin-bottom: 40px;
+        }
+        .study-title {
+            color: #4a148c;
+        }
+        .study-meta {
+            font-size: 14px;
+            color: #757575;
+            margin-bottom: 15px;
+        }
+        .study-content ul {
+            list-style-type: none;
+        }
+        .study-content li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .study-content li::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #4a148c;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 5px;
+        }
+        .study-formula {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .study-chart {
+            margin-bottom: 15px;
+        }
+        .study-chart-img {
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        /* 侧边栏样式 */
+        .sidebar-section {
+            background-color: #f5f0e6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .author-profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .author-bio {
+            font-size: 14px;
+            color: #5d4037;
+            margin-bottom: 10px;
+        }
+        .category-list {
+            list-style-type: none;
+        }
+        .category-list li {
+            margin-bottom: 10px;
+        }
+        .category-list .parent-category {
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .category-list .child-category {
+            margin-left: 20px;
+            font-size: 14px;
+            color: #757575;
+        }
+        .popular-posts {
+            list-style-type: none;
+        }
+        .popular-posts li {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        .popular-posts .post-thumb {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .popular-posts .post-info {
+            flex: 1;
+        }
+        .popular-posts .post-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        .popular-posts .post-views {
+            font-size: 12px;
+            color: #757575;
+        }
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .tag {
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #e0e0e0;
+            margin: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        .tag:hover {
+            background-color: #ff9800;
+            color: white;
+        }
+        .subscribe-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .subscribe-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .subscribe-form button:hover {
+            background-color: #f57c00;
+        }
+        .social-links {
+            display: flex;
+            justify-content: space-between;
+        }
+        .social-links a {
+            color: #757575;
+            font-size: 18px;
+        }
+        .social-links a:hover {
+            color: #ff9800;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #f5f0e6;
+            padding: 20px 0;
+            text-align: center;
+            color: #757575;
+            font-size: 14px;
+        }
+        .footer-links {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            margin: 0 10px;
+            color: #757575;
+        }
+        .footer-links a:hover {
+            color: #ff9800;
+        }
+        .copyright {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+        }
+    </style>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#">Hexo</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">小说</a></li>
+                    <li><a href="#">哲学随笔</a></li>
+                    <li><a href="#">学习记录</a></li>
+                    <li><a href="#">关于我</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <div class="container main-content">
+        <!-- 左侧主博文展示区 -->
+        <main class="content">
+            <!-- 小说板块 -->
+            <section class="novel-section">
+                <h2 class="section-title novel-title">小说</h2>
+                <article>
+                    <h3><a href="#">小说标题</a></h3>
+                    <div class="novel-meta">
+                        字数: 12,500 | 更新日期: 2023-11-05
+                    </div>
+                    <div class="novel-content">
+                        <p>小说开头段落内容，设置悬念，吸引读者继续阅读...</p>
+                        <div class="chapter-separator"></div>
+                        <p>小说中间段落内容，情节发展，人物对话，情感变化...</p>
+                        <div class="chapter-separator"></div>
+                        <p>小说结尾段落内容，总结前文，留下余味...</p>
+                    </div>
+                </article>
+            </section>
+
+            <!-- 哲学随笔板块 -->
+            <section class="philosophy-section">
+                <h2 class="section-title philosophy-title">哲学随笔</h2>
+                <article>
+                    <h3><a href="#">哲学随笔标题</a></h3>
+                    <div class="philosophy-summary">
+                        这篇哲学随笔探讨了生命的意义、存在与虚无的关系...
+                    </div>
+                    <div class="philosophy-content">
+                        <p>哲学随笔正文内容，从日常生活中的现象出发，引出哲学思考...</p>
+                        <div class="philosophy-highlight">
+                            关键概念: 存在主义认为，人的存在先于本质，我们通过选择和行动赋予生命意义。
+                        </div>
+                        <p>进一步深入探讨，结合哲学家观点和经典著作，阐述个人观点...</p>
+                        <div class="philosophy-think-icon">
+                            思考：我们如何在有限的生命中追求无限的意义？
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- 学习记录板块 -->
+            <section class="study-section">
+                <h2 class="section-title study-title">学习记录</h2>
+                <article>
+                    <h3><a href="#">高等数学学习笔记</a></h3>
+                    <div class="study-meta">
+                        学习日期: 2023-11-01 | 学习时长: 3小时
+                    </div>
+                    <div class="study-content">
+                        <p>知识点一：极限的定义与性质</p>
+                        <div class="study-formula">
+                            \( \lim_{x \to a} f(x) = L \) 表示当 x 趋近于 a 时，f(x) 趋近于 L。
+                            <br>
+                            性质1：唯一性，如果极限存在，则唯一。
+                            <br>
+                            性质2：局部保号性，如果极限大于0，则在某个邻域内函数值大于0。
+                        </div>
+                        <p>知识点二：导数的几何意义</p>
+                        <div class="study-chart">
+                            <img src="derivative-chart.jpg" alt="导数几何意义示意图" class="study-chart-img">
+                            <div class="chart-caption">导数表示函数在某一点的切线斜率</div>
+                        </div>
+                        <p>学习总结：通过今天的学习，掌握了极限和导数的基本概念，理解了它们之间的关系，以及在实际问题中的应用。</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <!-- 右侧侧边栏 -->
+        <aside class="sidebar">
+            <!-- 个人简介 -->
+            <div class="sidebar-section author-profile">
+                <img src="author-profile.jpg" alt="作者头像">
+                <h3 class="sidebar-title">关于我</h3>
+                <p class="author-bio">
+                    你好，我是 [你的名字]，一个热爱写作、思考和学习的人。
+                    <br>
+                    这里是我分享小说创作、哲学思考和学习笔记的地方。
+                </p>
+            </div>
+
+            <!-- 分类导航 -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">分类导航</h3>
+                <ul class="category-list">
+                    <li>
+                        <span class="parent-category">小说</span>
+                        <ul>
+                            <li class="child-category"><a href="#">言情小说</a></li>
+                            <li class="child-category"><a href="#">科幻小说</a></li>
+                            <li class="child-category"><a href="#">悬疑小说</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="parent-category">哲学随笔</span>
+                        <ul>
+                            <li class="child-category"><a href="#">存在主义</a></li>
+                            <li class="child-category"><a href="#">伦理学</a></li>
+                            <li class="child-category"><a href="#">哲学史</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="parent-category">学习记录</span>
+                        <ul>
+                            <li class="child-category"><a href="#">数学</a></li>
+                            <li class="child-category"><a href="#">文学</a></li>
+                            <li class="child-category"><a href="#">编程</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 热门文章 -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">热门文章</h3>
+                <ul class="popular-posts">
+                    <li>
+                        <img src="post1-thumb.jpg" alt="热门文章1" class="post-thumb">
+                        <div class="post-info">
+                            <div class="post-title"><a href="#">小说《心之归处》第一章</a></div>
+                            <div class="post-views">已阅读 256 次</div>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="post2-thumb.jpg" alt="热门文章2" class="post-thumb">
+                        <div class="post-info">
+                            <div class="post-title"><a href="#">存在主义与现代人的焦虑</a></div>
+                            <div class="post-views">已阅读 189 次</div>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="post3-thumb.jpg" alt="热门文章3" class="post-thumb">
+                        <div class="post-info">
+                            <div class="post-title"><a href="#">微积分学习笔记：积分技巧总结</a></div>
+                            <div class="post-views">已阅读 154 次</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 标签云 -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">标签云</h3>
+                <div class="tag-cloud">
+                    <span class="tag">言情小说</span>
+                    <span class="tag">存在主义</span>
+                    <span class="tag">微积分</span>
+                    <span class="tag">科幻</span>
+                    <span class="tag">伦理学</span>
+                    <span class="tag">编程</span>
+                    <span class="tag">随笔</span>
+                    <span class="tag">学习方法</span>
+                    <span class="tag">诗歌</span>
+                </div>
+            </div>
+
+            <!-- 订阅和社交链接 -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">订阅博客</h3>
+                <div class="subscribe-form">
+                    <input type="email" placeholder="输入您的邮箱地址">
+                    <button type="submit">订阅</button>
+                </div>
+                <h3 class="sidebar-title">关注我</h3>
+                <div class="social-links">
+                    <a href="#" title="微博">微博</a>
+                    <a href="#" title="微信公众号">微信</a>
+                    <a href="#" title="知乎">知乎</a>
+                    <a href="#" title="豆瓣">豆瓣</a>
+                </div>
+            </div>
+        </aside>
     </div>
-  </noscript>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">首页</a>
+                <a href="#">小说</a>
+                <a href="#">哲学随笔</a>
+                <a href="#">学习记录</a>
+                <a href="#">关于我</a>
+                <a href="#">隐私政策</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Hexo. 保留所有权利.
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

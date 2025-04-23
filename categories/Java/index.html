@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html lang="zh-CN" class="transition-all" data-default-color-scheme=auto>
 
 
 
@@ -77,10 +77,13 @@
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 
-<body>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
   
 
-  <header>
+  <!-- 增强的导航栏 -->
+  <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-md" 
+          x-data="{ isOpen: false }"
+          @scroll.window="window.scrollY > 100 ? $el.classList.add('scrolled') : $el.classList.remove('scrolled')">
     
 
 <div class="header-inner" style="height: 60vh;">
@@ -203,18 +206,31 @@
 
 </div>
 
+    
+    <!-- 暗色模式切换按钮 -->
+    
+    <button class="dark-mode-toggle absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            @click="document.documentElement.classList.toggle('dark')">
+      <i class="iconfont icon-sun text-xl"></i>
+      <span class="sr-only">Switch to Dark Mode</span>
+    </button>
+    
   </header>
 
-  <main>
+  <main class="min-h-screen pt-16">
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
+      <!-- 增强的Banner区域 -->
+      <div class="container nopadding-x-md relative">
+        <div id="board" 
+             class="rounded-xl overflow-hidden "
+             style="min-height: 60vh;">
           
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+          
+            <!-- 通用内容容器 -->
+            <div class="content-container mx-auto px-4">
+              <div class="content-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 transform hover:shadow-xl transition-all duration-300">
+                <div class="prose dark:prose-invert max-w-none">
+                  
 
 <div class="list-group">
   <p class="h4">共计 1 篇文章</p>
@@ -236,20 +252,29 @@
 
 
 
+                </div>
               </div>
             </div>
-          </div>
+          
         </div>
       </div>
     
 
+    <!-- 增强的返回顶部按钮 -->
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
+    <a id="scroll-top-button" 
+       class="fixed bottom-8 right-8 w-12 h-12 bg-primary-500 hover:bg-primary-600 dark:bg-primary-600 dark:hover:bg-primary-700 rounded-full shadow-lg flex items-center justify-center opacity-0 transition-all duration-300 transform translate-y-4"
+       aria-label="TOP" 
+       href="#" 
+       role="button"
+       @click.prevent="window.scrollTo({ top: 0, behavior: 'smooth' })">
+      <i class="iconfont icon-arrowup text-white text-xl"></i>
+    </a>
     
 
+    <!-- 增强的搜索组件 -->
     
+    <div class="search-wrapper fixed top-24 right-8 z-50">
       <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
@@ -271,13 +296,18 @@
   </div>
 </div>
 
+    </div>
     
 
+    <!-- 自定义HTML容器 -->
     
   </main>
 
-  <footer>
-    <div class="footer-inner">
+  <!-- 增强的页脚 -->
+  <footer class="bg-gray-800 text-gray-200 dark:bg-gray-900 dark:text-gray-400 mt-16 py-12">
+    <div class="container mx-auto px-4">
+      <div class="footer-content grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="footer-inner">
   
     <div class="footer-content">
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
@@ -313,9 +343,14 @@
   
 </div>
 
+      </div>
+      <div class="copyright mt-8 pt-8 border-t border-gray-700 text-center">
+        &copy; 2025 John Doe
+      </div>
+    </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- 脚本加载 -->
   
   <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
@@ -375,8 +410,30 @@
 
   
 
+  <!-- 全局过渡效果 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 页面加载动画
+      document.body.classList.add('loaded');
+      
+      // 返回顶部按钮显示逻辑
+      const scrollButton = document.getElementById('scroll-top-button');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollButton.classList.remove('opacity-0', 'translate-y-4');
+          scrollButton.classList.add('opacity-100', 'translate-y-0');
+        } else {
+          scrollButton.classList.add('opacity-0', 'translate-y-4');
+          scrollButton.classList.remove('opacity-100', 'translate-y-0');
+        }
+      });
+    });
+  </script>
+
   <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+    <div class="noscript-warning fixed top-0 left-0 right-0 bg-red-500 text-white text-center p-2">
+      博客在允许 JavaScript 运行的环境下浏览效果更佳
+    </div>
   </noscript>
 </body>
 </html>

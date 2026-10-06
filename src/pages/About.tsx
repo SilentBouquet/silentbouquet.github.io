@@ -39,12 +39,12 @@ export default function About() {
     <div className="min-h-screen">
       <SiteNav />
       <main className="mx-auto max-w-3xl px-6 pb-10 pt-32">
-        <p className="font-mono-meta text-xs tracking-[0.5em] text-muted-foreground">ABOUT</p>
-        <h1 className="mt-4 font-serif text-4xl font-black tracking-[0.15em]">关于</h1>
+        <p className="kicker">ABOUT</p>
+        <h1 className="mt-3 font-serif text-4xl font-black tracking-[0.12em]">关于</h1>
         <div className="hairline mt-10" />
 
         {/* 自述 */}
-        <section className="measure mt-12 space-y-7 text-[17px] leading-[2.1] text-justify">
+        <section className="measure mt-12 space-y-7 font-serif text-[17px] leading-[2.1] text-justify">
           <p className="dropcap">
             我是 SilentBouquet，现居南方，在腾讯云智担任运维开发工程师，负责元宝业务的运维工作。白天，我与监控曲线、告警和可用性打交道；夜晚，我在马尔克斯与阿多诺之间往返。
           </p>

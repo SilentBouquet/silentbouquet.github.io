@@ -27,6 +27,8 @@ export interface Essay {
   body: string;
   /** 置顶（来自 Markdown frontmatter） */
   pinned?: boolean;
+  /** 标签（来自 Markdown frontmatter） */
+  tags?: string[];
   featured?: boolean;
 }
 

@@ -23,6 +23,12 @@ function parseFrontmatter(raw: string): Omit<Essay, "slug"> {
     if (kv) meta[kv[1]] = kv[2].trim().replace(/^"(.*)"$/, "$1");
   }
   const body = m[2].trim();
+  const parseTags = (s?: string) =>
+    (s || "")
+      .replace(/^\[|\]$/g, "")
+      .split(/[,，]/)
+      .map((t) => t.trim().replace(/^["']|["']$/g, ""))
+      .filter(Boolean);
   return {
     title: meta.title || "未命名",
     subtitle: meta.subtitle || undefined,
@@ -30,6 +36,7 @@ function parseFrontmatter(raw: string): Omit<Essay, "slug"> {
     date: meta.date || "",
     excerpt: meta.excerpt || body.replace(/\s+/g, "").slice(0, 80) + "……",
     pinned: meta.pinned === "true",
+    tags: parseTags(meta.tags),
     body,
   };
 }

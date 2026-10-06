@@ -7,14 +7,15 @@ import {
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import {
-  REPO, commitFiles, disconnect, getStoredUser, getToken, validateToken,
+  REPO, commitFiles, disconnect, getStoredUser, getToken, refreshStoredUser, validateToken,
 } from "@/lib/publisher";
 import { countWords } from "@/lib/format";
+import { extractFileText } from "@/lib/extract";
 
 type Kind = "essay" | "note" | "fiction";
 
 const tabs: { kind: Kind; label: string; hint: string }[] = [
-  { kind: "essay", label: "文章", hint: "空行分段；未填标题时首行自动作为标题。直接粘贴含 frontmatter 的完整 Markdown 也可以。" },
+  { kind: "essay", label: "文章", hint: "空行分段；未填标题时首行自动作为标题。支持粘贴 Markdown，或上传 PDF / Word / 文本文件自动提取正文。" },
   { kind: "note", label: "笔记", hint: "空行分隔的每一段会成为一条独立笔记，一次可发布多条。" },
   { kind: "fiction", label: "小说", hint: "用「## 」开启新章节；无章节标记时全文作为一章。" },
 ];
@@ -56,6 +57,7 @@ export default function Write() {
   const [text, setText] = useState("");
   const [view, setView] = useState<"edit" | "preview">("edit");
   const [dragOver, setDragOver] = useState(false);
+  const [parsing, setParsing] = useState(false);
   const [draftNotice, setDraftNotice] = useState(false);
   const taRef = useRef<HTMLTextAreaElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -112,6 +114,13 @@ export default function Write() {
     setDraftNotice(false);
   };
 
+  // 启动时静默确认已记住的令牌仍然有效（失效则自动清除）
+  useEffect(() => {
+    if (getToken()) {
+      refreshStoredUser().then((login) => setUser(login));
+    }
+  }, []);
+
   const connect = async () => {
     if (!pat.trim()) return;
     setConnecting(true); setConnError("");
@@ -123,10 +132,24 @@ export default function Write() {
     } finally { setConnecting(false); }
   };
 
-  const upload = (file: File) => {
-    const reader = new FileReader();
-    reader.onload = () => { setText(String(reader.result ?? "")); setView("edit"); };
-    reader.readAsText(file, "utf-8");
+  const upload = async (file: File) => {
+    setParsing(true);
+    setErrorMsg(""); setPhase("idle");
+    try {
+      const content = await extractFileText(file);
+      if (!content.trim()) {
+        setPhase("error");
+        setErrorMsg(`「${file.name}」中没有提取到文字——扫描版 PDF 或纯图片文档暂不支持。`);
+      } else {
+        setText(content);
+        setView("edit");
+      }
+    } catch (e) {
+      setPhase("error");
+      setErrorMsg(`解析 ${file.name} 失败：${e instanceof Error ? e.message : "未知错误"}`);
+    } finally {
+      setParsing(false);
+    }
   };
 
   /** 在光标处插入 Markdown 片段 */
@@ -216,8 +239,8 @@ export default function Write() {
                 <ToolBtn title="链接" onClick={() => insert("[", "](https://)", "链接文字")}><LinkIcon size={15} /></ToolBtn>
                 <ToolBtn title="分割线" onClick={() => insert("\n\n——\n\n")}><Minus size={15} /></ToolBtn>
                 <span className="mx-2 h-4 w-px bg-border" />
-                <ToolBtn title="上传文件" onClick={() => fileRef.current?.click()}><FileUp size={15} /></ToolBtn>
-                <input ref={fileRef} type="file" accept=".md,.markdown,.txt,.text" className="hidden"
+                <ToolBtn title="上传 Markdown / PDF / Word / 文本" onClick={() => fileRef.current?.click()}><FileUp size={15} /></ToolBtn>
+                <input ref={fileRef} type="file" accept=".md,.markdown,.txt,.text,.pdf,.docx" className="hidden"
                   onChange={(e) => { const f = e.target.files?.[0]; if (f) upload(f); e.target.value = ""; }} />
               </div>
               <div className="flex items-center gap-3">
@@ -257,7 +280,12 @@ export default function Write() {
               )}
               {dragOver && (
                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center rounded-b-lg bg-primary/5 text-sm tracking-[0.3em] text-primary">
-                  松开以上传文件
+                  松开以提取文字（Markdown / PDF / Word / 文本）
+                </div>
+              )}
+              {parsing && (
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center gap-2 rounded-b-lg bg-card/80 text-sm text-muted-foreground backdrop-blur-sm">
+                  <Loader2 size={15} className="animate-spin" /> 正在解析文件…
                 </div>
               )}
             </div>
@@ -312,7 +340,7 @@ export default function Write() {
 
               {user ? (
                 <p className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
-                  <LinkIcon size={12} className="text-primary" /> 已连接 <b className="text-foreground">{user}</b>
+                  <LinkIcon size={12} className="text-primary" /> 已记住令牌 <b className="text-foreground">{user}</b> · 发布免粘贴
                   <button onClick={() => { disconnect(); setUser(null); }} className="ml-auto tracking-widest hover:text-destructive">断开</button>
                 </p>
               ) : (

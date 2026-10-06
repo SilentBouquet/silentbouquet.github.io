@@ -11,25 +11,78 @@ export const REPO = "SilentBouquet/SilentBouquet.github.io";
 const TOKEN_KEY = "silentbouquet:gh-pat";
 const USER_KEY = "silentbouquet:gh-user";
 
+/** localStorage 可能被隐私模式禁用，失败时降级到 sessionStorage（同源标签页内持久） */
+function storeGet(key: string): string | null {
+  try {
+    return localStorage.getItem(key) ?? sessionStorage.getItem(key);
+  } catch {
+    try {
+      return sessionStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  }
+}
+
+function storeSet(key: string, value: string) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    /* ignore */
+  }
+  try {
+    sessionStorage.setItem(key, value);
+  } catch {
+    /* ignore */
+  }
+}
+
+function storeRemove(key: string) {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    /* ignore */
+  }
+  try {
+    sessionStorage.removeItem(key);
+  } catch {
+    /* ignore */
+  }
+}
+
 export function getToken(): string | null {
-  return localStorage.getItem(TOKEN_KEY);
+  return storeGet(TOKEN_KEY);
 }
 
 export function getStoredUser(): string | null {
-  return localStorage.getItem(USER_KEY);
+  return storeGet(USER_KEY);
 }
 
 export function disconnect() {
-  localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(USER_KEY);
+  storeRemove(TOKEN_KEY);
+  storeRemove(USER_KEY);
 }
 
-/** 验证令牌并返回登录名；失败抛错 */
+/** 验证令牌并返回登录名；成功后会持久记住，之后发布无需再粘贴 */
 export async function validateToken(token: string): Promise<string> {
   const u = await ghApi("/user", { token });
-  localStorage.setItem(TOKEN_KEY, token);
-  localStorage.setItem(USER_KEY, u.login);
+  storeSet(TOKEN_KEY, token);
+  storeSet(USER_KEY, u.login);
   return u.login;
+}
+
+/** 静默确认已保存的令牌仍然有效；无效则清除并返回 null */
+export async function refreshStoredUser(): Promise<string | null> {
+  const token = getToken();
+  if (!token) return null;
+  try {
+    const u = await ghApi("/user", { token });
+    storeSet(USER_KEY, u.login);
+    return u.login;
+  } catch {
+    disconnect();
+    return null;
+  }
 }
 
 async function ghApi(

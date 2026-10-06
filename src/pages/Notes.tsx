@@ -1,15 +1,29 @@
+import { Link } from "react-router";
+import { Plus } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
-import { notes } from "@/content/notes";
+import { loadNotes } from "@/lib/notes";
 
 /** 笔记页：时间线式碎片 */
 export default function Notes() {
+  const notes = loadNotes();
+
   return (
     <div className="min-h-screen">
       <SiteNav />
       <main className="mx-auto max-w-3xl px-6 pb-10 pt-32">
-        <p className="font-mono-meta text-xs tracking-[0.5em] text-muted-foreground">NOTES</p>
-        <h1 className="mt-4 font-serif text-4xl font-black tracking-[0.15em]">笔记</h1>
+        <div className="flex items-end justify-between">
+          <div>
+            <p className="font-mono-meta text-xs tracking-[0.5em] text-muted-foreground">NOTES</p>
+            <h1 className="mt-4 font-serif text-4xl font-black tracking-[0.15em]">笔记</h1>
+          </div>
+          <Link
+            to="/write?type=note"
+            className="flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm tracking-[0.25em] text-primary-foreground transition-opacity hover:opacity-85"
+          >
+            <Plus size={15} /> 记一笔
+          </Link>
+        </div>
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
           碎片化的思考：读书时的批注、值班后的感想、雪与海的片刻。不成体系，拒绝收编。
         </p>
@@ -18,7 +32,7 @@ export default function Notes() {
         <div className="mt-12 space-y-10">
           {notes.length === 0 && (
             <p className="py-10 text-center text-sm text-muted-foreground">
-              笔记簿还是空白页——第一片碎片落下时，会出现在这里。
+              笔记簿还是空白页——点「记一笔」，写下第一片碎片。
             </p>
           )}
           {notes.map((n) => (

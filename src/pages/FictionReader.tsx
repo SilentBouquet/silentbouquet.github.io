@@ -5,14 +5,14 @@ import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import ReadingProgress from "@/components/ReadingProgress";
 import StarCanvas from "@/components/StarCanvas";
-import { fictions } from "@/content/fictions";
+import { loadFictions } from "@/lib/fiction";
 
 /**
  * 小说阅读页：支持「夜航模式」——深海夜空下的沉浸阅读
  */
 export default function FictionReader() {
   const { slug } = useParams();
-  const work = fictions.find((f) => f.slug === slug);
+  const work = loadFictions().find((f) => f.slug === slug);
   const [night, setNight] = useState(false);
   const [chapter, setChapter] = useState(0);
 

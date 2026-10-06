@@ -4,8 +4,8 @@ import StarCanvas from "@/components/StarCanvas";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { site } from "@/content/types";
-import { notes } from "@/content/notes";
-import { fictions } from "@/content/fictions";
+import { loadNotes } from "@/lib/notes";
+import { loadFictions } from "@/lib/fiction";
 import { useEssays } from "@/hooks/useEssays";
 
 const fadeUp = {
@@ -18,8 +18,8 @@ const fadeUp = {
 export default function Home() {
   const { list } = useEssays();
   const featured = list().slice(0, 3);
-  const latestNotes = notes.slice(0, 3);
-  const latestFiction = fictions[0];
+  const latestNotes = loadNotes().slice(0, 3);
+  const latestFiction = loadFictions()[0];
 
   return (
     <div className="min-h-screen">

@@ -1,14 +1,13 @@
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Plus, Pin, Star } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import EssayActions from "@/components/EssayActions";
 import { useEssays } from "@/hooks/useEssays";
 
-/** 文章列表页：置顶优先，支持新增/收藏/置顶/编辑/删除 */
+/** 文章列表页：置顶优先，入口指向写作间 */
 export default function Essays() {
   const { list, isFavorite, isPinned } = useEssays();
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen">
@@ -19,12 +18,12 @@ export default function Essays() {
             <p className="font-mono-meta text-xs tracking-[0.5em] text-muted-foreground">ESSAYS</p>
             <h1 className="mt-4 font-serif text-4xl font-black tracking-[0.15em]">文章</h1>
           </div>
-          <button
-            onClick={() => navigate("/essays/new")}
+          <Link
+            to="/write?type=essay"
             className="flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm tracking-[0.25em] text-primary-foreground transition-opacity hover:opacity-85"
           >
             <Plus size={15} /> 写文章
-          </button>
+          </Link>
         </div>
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
           成篇的写作：哲学笔记、文学评论与随笔。写得慢，但不打算写得更乖。

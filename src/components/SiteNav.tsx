@@ -24,6 +24,7 @@ const links = [
   { to: "/notes", label: "笔记" },
   { to: "/essays", label: "文章" },
   { to: "/fiction", label: "小说" },
+  { to: "/write", label: "写作" },
   { to: "/about", label: "关于" },
 ];
 

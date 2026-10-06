@@ -1,16 +1,29 @@
 import { Link } from "react-router";
+import { Plus } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
-import { fictions } from "@/content/fictions";
+import { loadFictions } from "@/lib/fiction";
 
 /** 小说列表页 */
 export default function Fiction() {
+  const fictions = loadFictions();
+
   return (
     <div className="min-h-screen">
       <SiteNav />
       <main className="mx-auto max-w-3xl px-6 pb-10 pt-32">
-        <p className="font-mono-meta text-xs tracking-[0.5em] text-muted-foreground">FICTION</p>
-        <h1 className="mt-4 font-serif text-4xl font-black tracking-[0.15em]">小说</h1>
+        <div className="flex items-end justify-between">
+          <div>
+            <p className="font-mono-meta text-xs tracking-[0.5em] text-muted-foreground">FICTION</p>
+            <h1 className="mt-4 font-serif text-4xl font-black tracking-[0.15em]">小说</h1>
+          </div>
+          <Link
+            to="/write?type=fiction"
+            className="flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm tracking-[0.25em] text-primary-foreground transition-opacity hover:opacity-85"
+          >
+            <Plus size={15} /> 开新篇
+          </Link>
+        </div>
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
           虚构是另一种诚实。关于海、雪、邮件，以及那些不在场的东西。
         </p>
@@ -21,7 +34,7 @@ export default function Fiction() {
             <div className="py-16 text-center">
               <p className="font-serif text-lg text-foreground/70">这里还没有小说。</p>
               <p className="mt-3 text-sm text-muted-foreground">
-                当第一篇小说开篇时，它会出现在这里。
+                点「开新篇」，让第一个故事从这里开始。
               </p>
             </div>
           )}

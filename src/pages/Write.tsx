@@ -177,7 +177,16 @@ export default function Write() {
       checkLive(parsed.liveUrl || "https://silentbouquet.github.io/");
     } catch (e) {
       setPhase("error");
-      setErrorMsg(e instanceof Error ? e.message : "发布失败");
+      const raw = e instanceof Error ? e.message : "发布失败";
+      if (raw.includes("Resource not accessible")) {
+        setErrorMsg(
+          "令牌权限不足：发布需要 Contents「Read and write」。请到 github.com/settings/personal-access-tokens 编辑该令牌，把 Repository permissions → Contents 改为 Read and write，保存后回来重试。"
+        );
+      } else if (raw.includes("401") || raw.toLowerCase().includes("bad credentials")) {
+        setErrorMsg("令牌无效或已过期，请断开后重新粘贴新令牌。");
+      } else {
+        setErrorMsg(raw);
+      }
     }
   };
 
